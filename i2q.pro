@@ -1,6 +1,7 @@
 TEMPLATE = app
 QMAKE_CXXFLAGS += -std=c++11
 # CONFIG += c++11
+CONFIG += qt
 INCLUDEPATH += . \
 		../i2pd
 LIBS += -L../i2pd -li2pd \
