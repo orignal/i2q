@@ -7,6 +7,8 @@ INCLUDEPATH += . \
 LIBS += -L../i2pd -li2pd \
 		-lcryptopp -lpthread \
 		-lboost_system -lboost_date_time -lboost_filesystem -lboost_regex -lboost_program_options
-SOURCES += main.cpp
+SOURCES += MainWindow.cpp \
+		main.cpp
+HEADERS += MainWindow.h
 
 
