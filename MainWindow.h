@@ -18,11 +18,11 @@ class MainWindow : public QMainWindow
 
 	private:
 
-		void InitLocalUID ();
+		void InitLocalUIDDestination ();
 
 	private:
 
-		std::unique_ptr<i2p::client::ClientDestination> m_LocalUID;
+		std::shared_ptr<i2p::client::ClientDestination> m_LocalUIDDestination;
 		QSystemTrayIcon * m_TrayIcon;
 };
 

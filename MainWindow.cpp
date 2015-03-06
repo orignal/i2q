@@ -6,7 +6,7 @@ MainWindow::MainWindow (QWidget* parent):
 	QMainWindow (parent)
 {
 	// local uid	
-	InitLocalUID ();
+	InitLocalUIDDestination ();
 	// tray icon
 	m_TrayIcon = new QSystemTrayIcon (this);
 	m_TrayIcon->setToolTip("I2Q");
@@ -15,10 +15,12 @@ MainWindow::MainWindow (QWidget* parent):
 
 MainWindow::~MainWindow()
 {
+	if (m_LocalUIDDestination)
+		m_LocalUIDDestination->Stop ();
 	delete m_TrayIcon;
 }
 
-void MainWindow::InitLocalUID ()
+void MainWindow::InitLocalUIDDestination ()
 {
 	static const char filename[] = "uid.dat";	
 	i2p::data::PrivateKeys keys;
@@ -43,5 +45,8 @@ void MainWindow::InitLocalUID ()
 		len = keys.ToBuffer (buf, len);
 		f.write ((char *)buf, len);
 		delete[] buf;
-	}	
+	}
+	m_LocalUIDDestination = std::make_shared<i2p::client::ClientDestination>(keys, true);
+	m_LocalUIDDestination->Start ();
 }
+
